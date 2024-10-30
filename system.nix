@@ -15,13 +15,6 @@
   system.defaults.NSGlobalDomain.NSAutomaticQuoteSubstitutionEnabled = true;
   system.defaults.NSGlobalDomain.NSAutomaticSpellingCorrectionEnabled = true;
 
-  system.keyboard = {
-    enableKeyMapping = true;
-    # nonUS.remapTilde = true;
-    remapCapsLockToEscape = true;
-    swapLeftCtrlAndFn = true;
-  };
-
   system.defaults.trackpad.Clicking = true; # tap-click
   system.defaults.trackpad.Dragging = true; # tap-drag
 
@@ -37,7 +30,7 @@
     FXPreferredViewStyle = "Nlsv"; # Nlsv: List view (details)
     _FXSortFoldersFirst = true; # keep folders on top
     ShowPathbar = true; # path breadcrumbs
-    ShowStatusBar = false; # bar at bottom with item/disk space stats
+    QuitMenuItem = true; # Enable menu item to quit finder
   };
 
 }

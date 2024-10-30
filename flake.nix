@@ -10,14 +10,18 @@
   outputs = inputs@{ self, nix-darwin, nixpkgs }:
   let
     configuration = { pkgs, ... }: {
-      imports = [ ./system.nix ];
+      imports = [
+        ./system.nix
+        ./remaps.nix
+      ];
 
       environment.systemPackages = with pkgs; [
         neovim
-	eza
-	just
-	bat
-	git
+        eza
+        just
+        bat
+        git
+        ripgrep
       ];
 
       # Auto upgrade nix package and the daemon service.

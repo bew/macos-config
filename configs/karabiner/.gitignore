@@ -1,0 +1,4 @@
+# Contains files downloaded from the web, before being applied to the config if enabled
+assets/
+
+automatic_backups/

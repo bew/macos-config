@@ -13,6 +13,7 @@
       imports = [
         ./system.nix
         ./remaps.nix
+        ./desktop.nix
       ];
 
       environment.systemPackages = with pkgs; [

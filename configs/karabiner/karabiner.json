@@ -60,7 +60,7 @@
                         ]
                     },
                     {
-                        "description": "Swap Ctrl-Fn (built-in keyboard only)",
+                        "description": "[Normalization] Swap Ctrl-Fn (built-in keyboard only)",
                         "manipulators": [
                             {
                                 "conditions": [
@@ -138,13 +138,13 @@
                                     "key_code": "right_control",
                                     "modifiers": { "optional": ["any"] }
                                 },
-                                "to": [{ "key_code": "left_command" }],
+                                "to": [{ "key_code": "right_command" }],
                                 "type": "basic"
                             }
                         ]
                     },
                     {
-                        "description": "Delete word by word with Cmd+Backspace (default deletes to BOL)",
+                        "description": "[Normalization] Delete word by word with Cmd+Backspace (default deletes to BOL)",
                         "manipulators": [
                             {
                                 "from": {
@@ -215,6 +215,43 @@
                                     },
                                     {
                                         "key_code": "spacebar"
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "[Normalization] Replace Cmd-(left/right)_arrow to Alt-(left/right)_arrow to move word by word",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "left_arrow",
+                                    "modifiers": {
+                                        "mandatory": ["right_command"],
+                                        "optional": ["any"]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "left_arrow",
+                                        "modifiers": ["right_option"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "right_arrow",
+                                    "modifiers": {
+                                        "mandatory": ["right_command"],
+                                        "optional": ["any"]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "right_arrow",
+                                        "modifiers": ["right_option"]
                                     }
                                 ],
                                 "type": "basic"

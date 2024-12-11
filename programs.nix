@@ -17,4 +17,8 @@
     # Work with AWS..
     awscli2
   ];
+
+  imports = [
+    ./techs/pythons.nix
+  ];
 }

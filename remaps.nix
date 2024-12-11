@@ -1,3 +1,5 @@
+{ pkgs, ... }:
+
 {
   # NOTE: these remaps are done for all devices, even USB-connected keyboards
   #   like ZSA making Ctrl act as Fn instead of Ctrl ><
@@ -14,4 +16,10 @@
   # FIXME: currently broken, see: https://github.com/LnL7/nix-darwin/issues/1132
 
   # TODO: setup key remapping in Nix here, and generate ~/.config/karabiner folder
+
+  # MAYBE: move to another module?
+  environment.systemPackages = with pkgs; [
+    espanso
+  ];
+  # TODO: place config in user's home dir
 }

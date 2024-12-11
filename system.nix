@@ -9,14 +9,20 @@
   system.defaults.NSGlobalDomain.NSWindowShouldDragOnGesture = true;
 
   # Disable various text automatic transformations
-  system.defaults.NSGlobalDomain.NSAutomaticCapitalizationEnabled = true;
-  system.defaults.NSGlobalDomain.NSAutomaticDashSubstitutionEnabled = true;
-  system.defaults.NSGlobalDomain.NSAutomaticPeriodSubstitutionEnabled = true;
-  system.defaults.NSGlobalDomain.NSAutomaticQuoteSubstitutionEnabled = true;
-  system.defaults.NSGlobalDomain.NSAutomaticSpellingCorrectionEnabled = true;
+  system.defaults.NSGlobalDomain.NSAutomaticCapitalizationEnabled = false;
+  system.defaults.NSGlobalDomain.NSAutomaticDashSubstitutionEnabled = false;
+  system.defaults.NSGlobalDomain.NSAutomaticPeriodSubstitutionEnabled = false;
+  system.defaults.NSGlobalDomain.NSAutomaticQuoteSubstitutionEnabled = false;
+  system.defaults.NSGlobalDomain.NSAutomaticSpellingCorrectionEnabled = false;
 
   system.defaults.trackpad.Clicking = true; # tap-click
   system.defaults.trackpad.Dragging = true; # tap-drag
+  system.defaults.NSGlobalDomain."com.apple.swipescrolldirection" = false; # not natural 🙏
+
+  system.defaults.WindowManager.StandardHideDesktopIcons = true;
+  system.defaults.WindowManager.EnableStandardClickToShowDesktop = false;
+
+  # Apps settings
 
   system.defaults.dock = {
     autohide = true;

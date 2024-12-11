@@ -14,15 +14,7 @@
         ./system.nix
         ./remaps.nix
         ./desktop.nix
-      ];
-
-      environment.systemPackages = with pkgs; [
-        neovim
-        eza
-        just
-        bat
-        git
-        ripgrep
+        ./programs.nix
       ];
 
       # Auto upgrade nix package and the daemon service.
@@ -30,9 +22,6 @@
 
       # Necessary for using flakes on this system.
       nix.settings.experimental-features = "nix-command flakes";
-
-      # Create /etc/zshrc that loads the nix-darwin environment.
-      programs.zsh.enable = true;
 
       # Set Git commit hash for darwin-version.
       system.configurationRevision = self.rev or self.dirtyRev or null;

@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{pkgs, lib, ...}: {
   # Create /etc/zshrc that loads the nix-darwin environment.
   programs.zsh.enable = true;
 
@@ -16,6 +16,10 @@
 
     # Work with AWS..
     awscli2
+    terraform # unfree (!!)
+  ];
+  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+    "terraform" # :/
   ];
 
   imports = [

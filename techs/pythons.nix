@@ -1,23 +1,42 @@
 { pkgs, lib, ... }:
 
 let
-  linkBin = binName: path: (
-    pkgs.runCommandLocal "${binName}-single-bin" { meta.mainProgram = binName; } ''
+  linkBin = binName: pathOrDrv: (
+    let
+      path = (
+        if lib.isDerivation pathOrDrv
+        then lib.getExe pathOrDrv
+        else pathOrDrv
+      );
+    in pkgs.runCommandLocal "${binName}-single-bin" { meta.mainProgram = binName; } ''
       mkdir -p $out/bin
-      ln -s ${lib.escapeShellArg path} $out/bin/
+      ln -s ${lib.escapeShellArg path} $out/bin/${binName}
     ''
   );
 
+  pkgsForPy = pyDrv: binNameSuffix: [
+    (linkBin "python${binNameSuffix}" pyDrv)
+    (linkBin "poetry${binNameSuffix}" (pkgs.poetry.override { python3 = pyDrv; }))
+  ];
+
   recentPythons = pkgs.buildEnv {
     name = "recent-pythons";
-    paths = [
-      (linkBin "python311" (lib.getExe pkgs.python311))
-      (linkBin "python312" (lib.getExe pkgs.python312))
-      (linkBin "python313" (lib.getExe pkgs.python313))
+    paths = lib.flatten [
+      (pkgsForPy pkgs.python311 "311")
+      (pkgsForPy pkgs.python312 "312")
+      # mypy not yet available for py313, needed to install poetry
+      # (pkgsForPy pkgs.python313 "313")
     ];
   };
 
-  defaultPython = pkgs.python313;
+  defaultPython = let
+    defaultPyDrv = pkgs.python312;
+  in pkgs.buildEnv {
+    name = "default-python";
+    paths = [
+      (linkBin "python3" defaultPyDrv)
+    ] ++ (pkgsForPy defaultPyDrv "");
+  };
 
 in {
   environment.systemPackages = [

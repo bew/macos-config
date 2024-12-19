@@ -13,16 +13,12 @@
     gitAndTools.delta
     ripgrep
     tealdeer # nice tldr impl
-
-    # Work with AWS..
-    awscli2
-    terraform # unfree (!!)
-  ];
-  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-    "terraform" # :/
+    nix-tree
   ];
 
   imports = [
+    ./techs/aws.nix
     ./techs/pythons.nix
+    ./techs/terraform.nix
   ];
 }

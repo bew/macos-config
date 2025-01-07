@@ -3,19 +3,30 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
+    nixpkgsBleedingEdge.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nix-darwin.url = "github:LnL7/nix-darwin";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
+
+    #home-manager.url = "github:nix-community/home-manager";
+
+    # dots.url = "github:bew/dotfiles";
   };
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs }:
+  outputs = inputs@{ self, nix-darwin, nixpkgs, nixpkgsBleedingEdge, ... }:
   let
-    configuration = { pkgs, ... }: {
+    configuration = { pkgs, ... }: let system = "aarch64-darwin"; in {
       imports = [
+        #inputs.home-manager.darwinModules.default
         ./system.nix
         ./remaps.nix
         ./desktop.nix
         ./programs.nix
       ];
+
+      _module.args.pkgsChannels = {
+        stable = nixpkgs.legacyPackages.${system};
+        bleedingedge = nixpkgsBleedingEdge.legacyPackages.${system};
+      };
 
       # Auto upgrade nix package and the daemon service.
       services.nix-daemon.enable = true;
@@ -31,7 +42,7 @@
       system.stateVersion = 5;
 
       # The platform the configuration will be used on.
-      nixpkgs.hostPlatform = "aarch64-darwin";
+      nixpkgs.hostPlatform = system;
     };
   in
   {
@@ -40,8 +51,5 @@
     darwinConfigurations."FRPARALT0054" = nix-darwin.lib.darwinSystem {
       modules = [ configuration ];
     };
-
-    # Expose the package set, including overlays, for convenience.
-    darwinPackages = self.darwinConfigurations."FRPARALT0054".pkgs;
   };
 }

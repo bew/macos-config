@@ -15,6 +15,7 @@ in {
     stable.bat
     stable.git
     stable.gitAndTools.delta
+    stable.git-trim
     stable.gh
     stable.ripgrep
     stable.tealdeer # nice tldr impl

@@ -24,6 +24,7 @@ in {
 
   imports = [
     ./techs/aws.nix
+    ./techs/docker-client.nix
     ./techs/pythons.nix
     ./techs/terraform.nix
   ];

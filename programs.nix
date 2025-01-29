@@ -15,10 +15,11 @@ in {
     stable.bat
     stable.git
     stable.gitAndTools.delta
+    stable.gh
     stable.ripgrep
     stable.tealdeer # nice tldr impl
     stable.nix-tree
-    bleedingedge.ast-grep
+    stable.yazi
   ];
 
   imports = [

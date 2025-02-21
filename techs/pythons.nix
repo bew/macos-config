@@ -1,6 +1,8 @@
-{ pkgs, lib, ... }:
+{ pkgs, lib, pkgsChannels, ... }:
 
 let
+  inherit (pkgsChannels) stable bleedingedge;
+
   linkBin = binName: pathOrDrv: (
     let
       path = (
@@ -14,28 +16,26 @@ let
     ''
   );
 
-  pkgsForPy = pyDrv: binNameSuffix: [
+  pkgsForPy = pyDrv: poetryDrv: binNameSuffix: [
     (linkBin "python${binNameSuffix}" pyDrv)
-    (linkBin "poetry${binNameSuffix}" (pkgs.poetry.override { python3 = pyDrv; }))
+    (linkBin "poetry${binNameSuffix}" (poetryDrv.override { python3 = pyDrv; }))
   ];
 
   recentPythons = pkgs.buildEnv {
     name = "recent-pythons";
     paths = lib.flatten [
-      (pkgsForPy pkgs.python311 "311")
-      (pkgsForPy pkgs.python312 "312")
-      # mypy not yet available for py313, needed to install poetry
-      # (pkgsForPy pkgs.python313 "313")
+      (pkgsForPy stable.python312 stable.poetry "312")
+      # wants to rebuild stuff... it's the default anyway, let's just avoid it here
+      # (pkgsForPy bleedingedge.python313 bleedingedge.poetry "313")
     ];
   };
 
-  defaultPython = let
-    defaultPyDrv = pkgs.python312;
-  in pkgs.buildEnv {
+  defaultPython = pkgs.buildEnv {
     name = "default-python";
     paths = [
-      (linkBin "python3" defaultPyDrv)
-    ] ++ (pkgsForPy defaultPyDrv "");
+      bleedingedge.python313
+      bleedingedge.poetry
+    ];
   };
 
 in {

@@ -1,3 +1,5 @@
+{ pkgs, ... }:
+
 {
   # Add colored borders around windows to better highlight the active/inactive apps
   services.jankyborders = {
@@ -8,4 +10,11 @@
     inactive_color = "0xFF333333";
     active_color = "0xFF00AAAD"; # Teal
   };
+
+  environment.systemPackages = [
+    # note: config is in `~/.hammerspoon`
+    (pkgs.callPackage ./pkgs/hammerspoon.nix {})
+  ];
+  # FIXME: Remove hardcoded $HOME path!
+  system.defaults."org.hammerspoon.Hammerspoon".MJConfigFile = "/Users/benoitlesellierdechezelles/.config/hammerspoon/init.lua";
 }

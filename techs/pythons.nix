@@ -1,24 +1,11 @@
-{ pkgs, lib, pkgsChannels, ... }:
+{ pkgs, lib, pkgsChannels, mybuilders, ... }:
 
 let
   inherit (pkgsChannels) stable bleedingedge;
 
-  linkBin = binName: pathOrDrv: (
-    let
-      path = (
-        if lib.isDerivation pathOrDrv
-        then lib.getExe pathOrDrv
-        else pathOrDrv
-      );
-    in pkgs.runCommandLocal "${binName}-single-bin" { meta.mainProgram = binName; } ''
-      mkdir -p $out/bin
-      ln -s ${lib.escapeShellArg path} $out/bin/${binName}
-    ''
-  );
-
   pkgsForPy = pyDrv: poetryDrv: binNameSuffix: [
-    (linkBin "python${binNameSuffix}" pyDrv)
-    (linkBin "poetry${binNameSuffix}" (poetryDrv.override { python3 = pyDrv; }))
+    (mybuilders.linkBin "python${binNameSuffix}" pyDrv)
+    (mybuilders.linkBin "poetry${binNameSuffix}" (poetryDrv.override { python3 = pyDrv; }))
   ];
 
   recentPythons = pkgs.buildEnv {

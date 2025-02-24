@@ -14,7 +14,7 @@
 
   outputs = inputs@{ self, nix-darwin, nixpkgs, nixpkgsBleedingEdge, ... }:
   let
-    configuration = { pkgs, ... }: let system = "aarch64-darwin"; in {
+    configuration = { pkgs, lib, ... }: let system = "aarch64-darwin"; in {
       imports = [
         #inputs.home-manager.darwinModules.default
         ./system.nix
@@ -27,6 +27,8 @@
         stable = nixpkgs.legacyPackages.${system};
         bleedingedge = nixpkgsBleedingEdge.legacyPackages.${system};
       };
+
+      _module.args.mybuilders = import ./lib/mybuilders.nix { inherit pkgs lib; };
 
       # Auto upgrade nix package and the daemon service.
       services.nix-daemon.enable = true;

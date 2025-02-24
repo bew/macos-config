@@ -1,4 +1,4 @@
-{pkgsChannels, ...}:
+{ pkgsChannels, ... }:
 
 let
   inherit (pkgsChannels) stable bleedingedge;

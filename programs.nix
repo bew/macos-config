@@ -21,6 +21,7 @@ in {
     stable.tealdeer # nice tldr impl
     stable.nix-tree
     stable.yazi
+    stable.htop
   ];
 
   imports = [

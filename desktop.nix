@@ -1,6 +1,8 @@
-{ pkgs, ... }:
+{ pkgs, pkgsChannels, ... }:
 
-{
+let
+  inherit (pkgsChannels) stable;
+in {
   imports = [
     ./modules/hammerspoon.nix
   ];
@@ -16,7 +18,8 @@
   };
 
   environment.systemPackages = [
-    # note: config is in `~/.hammerspoon`
+    stable.flameshot # cross-platform screenshoting tool
+
     (pkgs.callPackage ./pkgs/hammerspoon.nix {})
   ];
 

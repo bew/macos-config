@@ -1,6 +1,10 @@
 { pkgs, ... }:
 
 {
+  imports = [
+    ./modules/hammerspoon.nix
+  ];
+
   # Add colored borders around windows to better highlight the active/inactive apps
   services.jankyborders = {
     enable = true;
@@ -15,6 +19,13 @@
     # note: config is in `~/.hammerspoon`
     (pkgs.callPackage ./pkgs/hammerspoon.nix {})
   ];
-  # FIXME: Remove hardcoded $HOME path!
-  system.defaults."org.hammerspoon.Hammerspoon".MJConfigFile = "/Users/benoitlesellierdechezelles/.config/hammerspoon/init.lua";
+
+  programs.hammerspoon.enable = true;
+  system.defaults."org.hammerspoon.Hammerspoon" = {
+    # FIXME: Remove hardcoded $HOME path!
+    MJConfigFile = "/Users/benoitlesellierdechezelles/.config/hammerspoon/init.lua";
+    MJKeepConsoleOnTopKey = true;
+    MJShowMenuIconKey = true;
+    MJShowDockIconKey = false;
+  };
 }

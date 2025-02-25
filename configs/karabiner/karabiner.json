@@ -4,6 +4,27 @@
             "complex_modifications": {
                 "rules": [
                     {
+                        "description": "[Virtual OS] Built-in Ctrl (~never used..) -> OS key (F17)",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "description": "Built-in keyboard only",
+                                        "identifiers": [{ "is_built_in_keyboard": true }],
+                                        "type": "device_if"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "left_control",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to": [{ "modifiers": ["fn"], "key_code": "f17" }],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+
+                    {
                         "description": "Caps to Ctrl/Escape, only for terminal/editor",
                         "manipulators": [
                             {
@@ -62,7 +83,7 @@
                         ]
                     },
                     {
-                        "description": "[Normalization] Swap Ctrl-Fn (built-in keyboard only)",
+                        "description": "[Normalization] Swap Ctrl <=> Fn built-in keyboard only",
                         "manipulators": [
                             {
                                 "conditions": [

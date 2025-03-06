@@ -8,7 +8,7 @@
   # Allow moving window using Ctrl+Cmd+LeftDrag from anywhere
   system.defaults.NSGlobalDomain.NSWindowShouldDragOnGesture = true;
 
-  # Disable various text automatic transformations
+  # Disable various automatic text transformations
   system.defaults.NSGlobalDomain.NSAutomaticCapitalizationEnabled = false;
   system.defaults.NSGlobalDomain.NSAutomaticDashSubstitutionEnabled = false;
   system.defaults.NSGlobalDomain.NSAutomaticPeriodSubstitutionEnabled = false;
@@ -18,6 +18,9 @@
   system.defaults.trackpad.Clicking = true; # tap-click
   system.defaults.trackpad.Dragging = true; # tap-drag
   system.defaults.NSGlobalDomain."com.apple.swipescrolldirection" = false; # not natural 🙏
+  system.defaults.NSGlobalDomain."com.apple.trackpad.forceClick" = false;
+  system.defaults.NSGlobalDomain."com.apple.trackpad.trackpadCornerClickBehavior" = 1; # enable corner click for right click
+  # NOTE: If right click with 2-finger tap also clicks to targetting item, we can use 1-finger Ctrl-tap to get the menu.
 
   system.defaults.WindowManager.StandardHideDesktopIcons = true;
   system.defaults.WindowManager.EnableStandardClickToShowDesktop = false;

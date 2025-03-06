@@ -11,9 +11,9 @@ let
   recentPythons = pkgs.buildEnv {
     name = "recent-pythons";
     paths = lib.flatten [
-      (pkgsForPy stable.python312 stable.poetry "312")
+      (pkgsForPy stable.python312 stable.poetry "3.12")
       # wants to rebuild stuff... it's the default anyway, let's just avoid it here
-      # (pkgsForPy bleedingedge.python313 bleedingedge.poetry "313")
+      # (pkgsForPy bleedingedge.python313 bleedingedge.poetry "3.13")
     ];
   };
 

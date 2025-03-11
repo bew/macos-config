@@ -16,6 +16,7 @@ in {
     stable.git
     stable.gitAndTools.delta
     stable.git-trim
+    stable.lazygit
     stable.gh
     stable.ripgrep
     stable.tealdeer # nice tldr impl

@@ -8,6 +8,9 @@
   # Allow moving window using Ctrl+Cmd+LeftDrag from anywhere
   system.defaults.NSGlobalDomain.NSWindowShouldDragOnGesture = true;
 
+  # Use F1, F2, etc. keys as standard function keys (use `fn+F#` for their alternate action)
+  system.defaults.NSGlobalDomain."com.apple.keyboard.fnState" = true;
+
   # Disable various automatic text transformations
   system.defaults.NSGlobalDomain.NSAutomaticCapitalizationEnabled = false;
   system.defaults.NSGlobalDomain.NSAutomaticDashSubstitutionEnabled = false;

@@ -4,7 +4,7 @@
             "complex_modifications": {
                 "rules": [
                     {
-                        "description": "[Virtual OS] Built-in Ctrl (~never used..) -> OS key (F17)",
+                        "description": "[Virtual OS] Built-in Ctrl (~never used..) -> OS key (F17, to be remapped in Hammerspoon)",
                         "manipulators": [
                             {
                                 "conditions": [
@@ -18,12 +18,16 @@
                                     "key_code": "left_control",
                                     "modifiers": { "optional": ["any"] }
                                 },
-                                "to": [{ "modifiers": ["fn"], "key_code": "f17" }],
+                                "to": [
+                                    {
+                                        "key_code": "f17",
+                                        "modifiers": ["fn"]
+                                    }
+                                ],
                                 "type": "basic"
                             }
                         ]
                     },
-
                     {
                         "description": "Caps to Ctrl/Escape, only for terminal/editor",
                         "manipulators": [

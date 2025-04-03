@@ -20,9 +20,11 @@ in {
     stable.gh
     stable.ripgrep
     stable.tealdeer # nice tldr impl
-    stable.nix-tree
     stable.yazi
     stable.htop
+
+    stable.nix-tree
+    stable.nix-output-monitor
   ];
 
   imports = [

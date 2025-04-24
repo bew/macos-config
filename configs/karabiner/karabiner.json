@@ -122,6 +122,41 @@
                         ]
                     },
                     {
+                        "description": "[Normalization] Swap `<` <=> `²` (It's weirdly wrong on French - PC layout.., ISSUE: #4178) | Built-in keyboard only",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "description": "Built-in keyboard only",
+                                        "identifiers": [{ "is_built_in_keyboard": true }],
+                                        "type": "device_if"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "non_us_backslash",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to": [{ "key_code": "grave_accent_and_tilde" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "description": "Built-in keyboard only",
+                                        "identifiers": [{ "is_built_in_keyboard": true }],
+                                        "type": "device_if"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "grave_accent_and_tilde",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to": [{ "key_code": "non_us_backslash" }],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
                         "description": "Replace (left/right) `Ctrl` by `Command`, except for terminal/editor app | External keyboard only",
                         "manipulators": [
                             {

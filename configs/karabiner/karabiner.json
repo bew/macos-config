@@ -4,7 +4,7 @@
             "complex_modifications": {
                 "rules": [
                     {
-                        "description": "[Virtual OS] Built-in Ctrl (~never used..) -> OS key (F17, to be remapped in Hammerspoon)",
+                        "description": "[Virtual key] Built-in `Ctrl` (~never used..) -> `OS` key (`F17`, to be remapped in Hammerspoon) | Built-in keyboard only",
                         "manipulators": [
                             {
                                 "conditions": [
@@ -29,7 +29,7 @@
                         ]
                     },
                     {
-                        "description": "Caps to Ctrl/Escape, only for terminal/editor",
+                        "description": "`Caps` to `Ctrl/Escape`, only for terminal/editor",
                         "manipulators": [
                             {
                                 "conditions": [
@@ -58,7 +58,7 @@
                         ]
                     },
                     {
-                        "description": "Caps to Cmd/Escape, except for terminal/editor",
+                        "description": "`Caps` to `Cmd/Escape`, except for terminal/editor",
                         "manipulators": [
                             {
                                 "conditions": [
@@ -87,7 +87,7 @@
                         ]
                     },
                     {
-                        "description": "[Normalization] Swap Ctrl <=> Fn built-in keyboard only",
+                        "description": "[Normalization] Swap `Ctrl` <=> `Fn` | Built-in keyboard only",
                         "manipulators": [
                             {
                                 "conditions": [
@@ -122,20 +122,7 @@
                         ]
                     },
                     {
-                        "description": "[FAIL when not on terminal because ctrl-to-OS is remapped too early?? or not??] Use OS-Ctrl-s to open screenshot app (must be before Ctrl->Cmd replacement)",
-                        "manipulators": [
-                            {
-                                "from": {
-                                    "key_code": "s",
-                                    "modifiers": { "mandatory": ["control", "command"] }
-                                },
-                                "to": [{ "shell_command": "screencapture -iUc" }],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "Replace (left/right) Ctrl by Command for external keyboards, except for terminal/editor app",
+                        "description": "Replace (left/right) `Ctrl` by `Command`, except for terminal/editor app | External keyboard only",
                         "manipulators": [
                             {
                                 "conditions": [
@@ -194,7 +181,7 @@
                         ]
                     },
                     {
-                        "description": "[Normalization] Delete word by word with Cmd+Backspace (default deletes to BOL)",
+                        "description": "[Normalization] Delete word by word with `Cmd+Backspace` (default deletes to BOL)",
                         "manipulators": [
                             {
                                 "from": {
@@ -212,7 +199,7 @@
                         ]
                     },
                     {
-                        "description": "Delete to BOL with Cmd+u",
+                        "description": "Delete to BOL with `Cmd+u`",
                         "manipulators": [
                             {
                                 "from": {
@@ -230,7 +217,7 @@
                         ]
                     },
                     {
-                        "description": "[Fix keyboard] Replace Shift-mini² with ~ (default is >)",
+                        "description": "[Fix keyboard] Replace `Shift-mini²` with `~` (default is `>`)",
                         "manipulators": [
                             {
                                 "from": {
@@ -268,7 +255,7 @@
                         ]
                     },
                     {
-                        "description": "[Normalization] Replace Cmd-(left/right)_arrow to Alt-(left/right)_arrow to move word-by-word",
+                        "description": "[Normalization] Replace `Cmd-(left/right)_arrow` to `Alt-(left/right)_arrow` to move word-by-word",
                         "manipulators": [
                             {
                                 "from": {
@@ -305,7 +292,7 @@
                         ]
                     },
                     {
-                        "description": "[Fix keyboard] Remap Home/End/C-Home/C-End to Command-arrows, except for terminal/editor [note: must be after remaps for word-by-word movements]",
+                        "description": "[Fix keyboard] Remap `Home/End/C-Home/C-End` to `Command-arrows`, except for terminal/editor [note: must be after remaps for word-by-word movements]",
                         "manipulators": [
                             {
                                 "conditions": [
@@ -320,9 +307,7 @@
                                 ],
                                 "from": {
                                     "key_code": "home",
-                                    "modifiers": {
-                                        "optional": ["any"]
-                                    }
+                                    "modifiers": { "optional": ["any"] }
                                 },
                                 "to": [
                                     {
@@ -345,9 +330,7 @@
                                 ],
                                 "from": {
                                     "key_code": "end",
-                                    "modifiers": {
-                                        "optional": ["any"]
-                                    }
+                                    "modifiers": { "optional": ["any"] }
                                 },
                                 "to": [
                                     {
@@ -360,7 +343,7 @@
                         ]
                     },
                     {
-                        "description": "Use Cmd-q to lock laptop [note: K-E operates in qwerty mode]",
+                        "description": "Use `Cmd-q` to lock laptop [note: K-E operates in qwerty mode]",
                         "manipulators": [
                             {
                                 "from": {

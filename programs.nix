@@ -15,6 +15,7 @@ in {
     stable.bat
     stable.git
     stable.gitAndTools.delta
+    bleedingedge.mergiraf
     stable.git-trim
     stable.lazygit
     stable.gh

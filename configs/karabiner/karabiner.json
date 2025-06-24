@@ -378,7 +378,7 @@
                         ]
                     },
                     {
-                        "description": "Use `Cmd-q` to lock laptop [note: K-E operates in qwerty mode]",
+                        "description": "Use `Cmd-q` to lock laptop (-> `Cmd-Ctrl-q`)",
                         "manipulators": [
                             {
                                 "from": {
@@ -389,6 +389,172 @@
                                     {
                                         "key_code": "a",
                                         "modifiers": ["command", "control"]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "[WebBrowser] `Alt-a/z` to switch tabs (-> `Ctrl-(Shift)-Tab`), with `Shift` to move tabs (-> `Ctrl-(Shift)-Page{Up,Down}`)",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                          "^org.mozilla.firefox$"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "q",
+                                    "modifiers": { "mandatory": ["option"] }
+                                },
+                                "to_if_alone": [
+                                    {
+                                        "key_code": "tab",
+                                        "modifiers": ["control", "shift"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                          "^org.mozilla.firefox$"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "w",
+                                    "modifiers": { "mandatory": ["option"] }
+                                },
+                                "to_if_alone": [
+                                    {
+                                        "key_code": "tab",
+                                        "modifiers": ["control"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                          "^org.mozilla.firefox$"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "q",
+                                    "modifiers": { "mandatory": ["option", "shift"] }
+                                },
+                                "to_if_alone": [
+                                    {
+                                        "key_code": "page_up",
+                                        "modifiers": ["control", "shift"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                          "^org.mozilla.firefox$"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "w",
+                                    "modifiers": { "mandatory": ["option", "shift"] }
+                                },
+                                "to_if_alone": [
+                                    {
+                                        "key_code": "page_down",
+                                        "modifiers": ["control", "shift"]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "[WebBrowser] `Alt-r` to reload page (-> `F5`)",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                          "^org.mozilla.firefox$"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "r",
+                                    "modifiers": { "mandatory": ["option"] }
+                                },
+                                "to_if_alone": [
+                                    {
+                                        "key_code": "f5"
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "[WebBrowser] `Alt-d` to close tab (-> `Cmd-w`)",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                          "^org.mozilla.firefox$"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "d",
+                                    "modifiers": { "mandatory": ["option"] }
+                                },
+                                "to_if_alone": [
+                                    {
+                                        "key_code": "z",
+                                        "modifiers": ["command"]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "[WebBrowser] `Alt-u` to reopen closed tab",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                          "^org.mozilla.firefox$"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "u",
+                                    "modifiers": { "mandatory": ["option"] }
+                                },
+                                "to_if_alone": [
+                                    {
+                                        "key_code": "t",
+                                        "modifiers": ["command", "shift"]
                                     }
                                 ],
                                 "type": "basic"

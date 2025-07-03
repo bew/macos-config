@@ -327,7 +327,7 @@
                         ]
                     },
                     {
-                        "description": "[Fix keyboard] Remap `Home/End/C-Home/C-End` to `Command-arrows`, except for terminal/editor [note: must be after remaps for word-by-word movements]",
+                        "description": "[Fix keyboard] Remap `Home/End/C-Home/C-End` to `Command-arrows`, except for terminal/editor, ONLY if the input key came from physical keyboard (to avoid double-remaps) [note: must be after remaps for word-by-word movements]",
                         "manipulators": [
                             {
                                 "conditions": [
@@ -338,6 +338,10 @@
                                             "^com.microsoft.VSCode$"
                                         ],
                                         "type": "frontmost_application_unless"
+                                    },
+                                    {
+                                        "type": "event_changed_if",
+                                        "value": false
                                     }
                                 ],
                                 "from": {
@@ -361,6 +365,10 @@
                                             "^com.microsoft.VSCode$"
                                         ],
                                         "type": "frontmost_application_unless"
+                                    },
+                                    {
+                                        "type": "event_changed_if",
+                                        "value": false
                                     }
                                 ],
                                 "from": {
@@ -402,7 +410,7 @@
                                 "conditions": [
                                     {
                                         "bundle_identifiers": [
-                                          "^org.mozilla.firefox$"
+                                            "^org.mozilla.firefox$"
                                         ],
                                         "type": "frontmost_application_if"
                                     }
@@ -423,7 +431,7 @@
                                 "conditions": [
                                     {
                                         "bundle_identifiers": [
-                                          "^org.mozilla.firefox$"
+                                            "^org.mozilla.firefox$"
                                         ],
                                         "type": "frontmost_application_if"
                                     }
@@ -444,7 +452,7 @@
                                 "conditions": [
                                     {
                                         "bundle_identifiers": [
-                                          "^org.mozilla.firefox$"
+                                            "^org.mozilla.firefox$"
                                         ],
                                         "type": "frontmost_application_if"
                                     }
@@ -465,7 +473,7 @@
                                 "conditions": [
                                     {
                                         "bundle_identifiers": [
-                                          "^org.mozilla.firefox$"
+                                            "^org.mozilla.firefox$"
                                         ],
                                         "type": "frontmost_application_if"
                                     }
@@ -491,7 +499,7 @@
                                 "conditions": [
                                     {
                                         "bundle_identifiers": [
-                                          "^org.mozilla.firefox$"
+                                            "^org.mozilla.firefox$"
                                         ],
                                         "type": "frontmost_application_if"
                                     }
@@ -500,11 +508,7 @@
                                     "key_code": "r",
                                     "modifiers": { "mandatory": ["option"] }
                                 },
-                                "to_if_alone": [
-                                    {
-                                        "key_code": "f5"
-                                    }
-                                ],
+                                "to_if_alone": [{ "key_code": "f5" }],
                                 "type": "basic"
                             }
                         ]
@@ -516,7 +520,7 @@
                                 "conditions": [
                                     {
                                         "bundle_identifiers": [
-                                          "^org.mozilla.firefox$"
+                                            "^org.mozilla.firefox$"
                                         ],
                                         "type": "frontmost_application_if"
                                     }
@@ -542,7 +546,7 @@
                                 "conditions": [
                                     {
                                         "bundle_identifiers": [
-                                          "^org.mozilla.firefox$"
+                                            "^org.mozilla.firefox$"
                                         ],
                                         "type": "frontmost_application_if"
                                     }
@@ -555,6 +559,51 @@
                                     {
                                         "key_code": "t",
                                         "modifiers": ["command", "shift"]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "[WebBrowser] `Alt-g/G` to go to top/bottom of page",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "^org.mozilla.firefox$"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "g",
+                                    "modifiers": { "mandatory": ["option"] }
+                                },
+                                "to_if_alone": [
+                                    {
+                                        "key_code": "home"
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "^org.mozilla.firefox$"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "g",
+                                    "modifiers": { "mandatory": ["option", "shift"] }
+                                },
+                                "to_if_alone": [
+                                    {
+                                        "key_code": "end"
                                     }
                                 ],
                                 "type": "basic"

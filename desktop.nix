@@ -21,6 +21,15 @@ in {
     stable.flameshot # cross-platform screenshoting tool
 
     (pkgs.callPackage ./pkgs/hammerspoon.nix {})
+
+    # nice clipboard manager
+    (stable.maccy.overrideAttrs (prev: rec {
+      version = "v2.5.1";
+      src = pkgs.fetchurl {
+        url = "https://github.com/p0deje/Maccy/releases/download/${version}/Maccy.app.zip";
+        hash = "sha256-pwMiCAS+1uEtEQv2e1UflxYuuh/qqYJbMcp2ZVvZBTA=";
+      };
+    }))
   ];
 
   programs.hammerspoon.enable = true;

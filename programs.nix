@@ -23,6 +23,7 @@ in {
     stable.tealdeer # nice tldr impl
     stable.yazi
     stable.htop
+    stable.tokei
 
     stable.nix-tree
     stable.nix-output-monitor

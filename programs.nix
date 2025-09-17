@@ -34,5 +34,6 @@ in {
     ./techs/docker-client.nix
     ./techs/pythons.nix
     ./techs/terraform.nix
+    ./techs/web-api.nix
   ];
 }

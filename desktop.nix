@@ -1,7 +1,7 @@
 { pkgs, pkgsChannels, config, ... }:
 
 let
-  inherit (pkgsChannels) stable;
+  inherit (pkgsChannels) stable bleedingedge;
 in {
   imports = [
     ./modules/hammerspoon.nix
@@ -10,6 +10,7 @@ in {
   # Add colored borders around windows to better highlight the active/inactive apps
   services.jankyborders = {
     enable = true;
+    package = bleedingedge.jankyborders; # NOTE: need 1.8.4+ for macOS 26 compat
     order = "above"; # improve visibility for maximized windows
     width = 4.0; # default: 5.0
     # Color format: 0xAARRGGBB

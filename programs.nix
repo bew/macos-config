@@ -24,6 +24,7 @@ in {
     stable.yazi
     stable.htop
     stable.tokei
+    stable.nushell
 
     stable.nix-tree
     stable.nix-output-monitor

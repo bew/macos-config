@@ -55,21 +55,6 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    system.activationScripts.postUserActivation.text = let
-      nonNullAppDefaults = lib.filterAttrs (n: v: v != null) cfg_defaults;
-      # TODO: remove this fn once I upgrade! (Missing in 24.11, will be released in 25.03)
-      concatMapAttrsStringSep = (
-        sep: f: attrs:
-        lib.concatStringsSep sep (lib.attrValues (lib.mapAttrs f attrs))
-      );
-      writeDefault = (
-        key: value:
-        let
-          escaped_value = lib.strings.escape [ "'" ] (lib.generators.toPlist { } value);
-        in "defaults write 'org.hammerspoon.Hammerspoon' '${key}' $'${escaped_value}'"
-      );
-    in lib.mkIf (nonNullAppDefaults != []) (
-      concatMapAttrsStringSep "\n" (writeDefault) cfg_defaults
-    );
+    system.defaults.CustomUserPreferences."org.hammerspoon.Hammerspoon" = cfg_defaults;
   };
 }

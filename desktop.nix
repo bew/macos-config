@@ -1,4 +1,4 @@
-{ pkgs, pkgsChannels, ... }:
+{ pkgs, pkgsChannels, config, ... }:
 
 let
   inherit (pkgsChannels) stable;
@@ -18,8 +18,6 @@ in {
   };
 
   environment.systemPackages = [
-    stable.flameshot # cross-platform screenshoting tool
-
     (pkgs.callPackage ./pkgs/hammerspoon.nix {})
 
     # nice clipboard manager
@@ -34,8 +32,7 @@ in {
 
   programs.hammerspoon.enable = true;
   system.defaults."org.hammerspoon.Hammerspoon" = {
-    # FIXME: Remove hardcoded $HOME path!
-    MJConfigFile = "/Users/benoitlesellierdechezelles/.config/hammerspoon/init.lua";
+    MJConfigFile = "/Users/${config.system.primaryUser}/.config/hammerspoon/init.lua";
     MJKeepConsoleOnTopKey = true;
     MJShowMenuIconKey = true;
     MJShowDockIconKey = false;

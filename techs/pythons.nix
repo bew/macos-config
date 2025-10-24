@@ -4,7 +4,6 @@ let
   pyVersion = (
     {
       pyDrv,
-      poetryDrv,
       binNameSuffix,
     }:
     pkgs.buildEnv {
@@ -16,7 +15,6 @@ let
           in mybuilders.linkBin "ipython${binNameSuffix}" "${ipyEnv}/bin/ipython"
         )
         (mybuilders.linkBin "python${binNameSuffix}" pyDrv)
-        (mybuilders.linkBin "poetry${binNameSuffix}" (poetryDrv.override { python3 = pyDrv; }))
       ];
       passthru.usedBinNameSuffix = binNameSuffix;
       passthru.usedPythonDrv = pyDrv;
@@ -26,10 +24,8 @@ let
   pyDefault = pyVersionDrv: pkgs.buildEnv {
     name = "default-python";
     paths = [
-      pyVersionDrv.usedPythonDrv # MAYBE: remove useless binaries?
+      pyVersionDrv.usedPythonDrv # MAYBE: remove useless binaries? (2to3, idle, pydoc, *-config, ..)
       (mybuilders.linkBin "ipython" "${pyVersionDrv}/bin/ipython${pyVersionDrv.usedBinNameSuffix}")
-      # I want Poetry v2+ 😬
-      # (mybuilders.linkBin "poetry" "${pyVersionDrv}/bin/poetry${pyVersionDrv.usedBinNameSuffix}")
     ];
   };
 in
@@ -38,23 +34,25 @@ let
   inherit (pkgsChannels) stable bleedingedge;
 
   pyVersionDrvs = {
+    "3.11" = pyVersion {
+      pyDrv = stable.python311;
+      binNameSuffix = "3.11";
+    };
     "3.12" = pyVersion {
       pyDrv = stable.python312;
-      poetryDrv = stable.poetry;
       binNameSuffix = "3.12";
     };
     "3.13" = pyVersion {
       pyDrv = bleedingedge.python313;
-      poetryDrv = bleedingedge.poetry;
       binNameSuffix = "3.13";
     };
   };
 
 in {
   environment.systemPackages = [
+    pyVersionDrvs."3.11"
     pyVersionDrvs."3.12"
     pyVersionDrvs."3.13"
     (pyDefault pyVersionDrvs."3.12")
-    bleedingedge.poetry # I want last version poetry (v2+)
   ];
 }

@@ -14,7 +14,7 @@
 
   outputs = inputs@{ self, nix-darwin, nixpkgs, nixpkgsBleedingEdge, ... }:
   let
-    configuration = { pkgs, lib, ... }: let system = "aarch64-darwin"; in {
+    configuration = { pkgs, lib, config, ... }: let system = "aarch64-darwin"; in {
       imports = [
         #inputs.home-manager.darwinModules.default
         ./system.nix
@@ -35,6 +35,7 @@
 
       # Used for all options that applies to the primary user (many in `system.defaults.*`)
       system.primaryUser = "benoitlesellierdechezelles";
+      environment.variables.XDG_CONFIG_HOME = "${config.system.primaryUserHome}/.config";
 
       # Set Git commit hash for darwin-version.
       system.configurationRevision = self.rev or self.dirtyRev or null;

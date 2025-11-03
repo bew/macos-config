@@ -41,7 +41,6 @@ in {
   ];
 
   imports = [
-    ./techs/ai.nix # let's try...
     ./techs/aws.nix
     ./techs/docker-client.nix
     ./techs/pythons.nix

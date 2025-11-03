@@ -36,6 +36,7 @@
       # Used for all options that applies to the primary user (many in `system.defaults.*`)
       system.primaryUser = "benoitlesellierdechezelles";
       environment.variables.XDG_CONFIG_HOME = "${config.system.primaryUserHome}/.config";
+      nix.settings.trusted-users = [config.system.primaryUser];
 
       # Set Git commit hash for darwin-version.
       system.configurationRevision = self.rev or self.dirtyRev or null;

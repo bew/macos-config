@@ -28,6 +28,16 @@ in {
 
     stable.nix-tree
     stable.nix-output-monitor
+
+    # Project-specific env managers
+
+    # "The front-end to your dev env", https://mise.jdx.dev/
+    # (can install project-specific tools, and replace just & direnv)
+    bleedingedge.mise
+
+    # "Fast, Declarative, Reproducible and Composable Developer Environments using Nix", https://devenv.sh/
+    # (can install project-specific tools, setup services, ... and replace just)
+    bleedingedge.devenv
   ];
 
   imports = [

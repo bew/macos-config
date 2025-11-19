@@ -20,7 +20,6 @@
 
   system.defaults.trackpad.Clicking = true; # tap-click
   system.defaults.trackpad.Dragging = true; # tap-drag
-  system.defaults.NSGlobalDomain."com.apple.swipescrolldirection" = false; # not natural 🙏
   system.defaults.NSGlobalDomain."com.apple.trackpad.forceClick" = false;
   system.defaults.NSGlobalDomain."com.apple.trackpad.trackpadCornerClickBehavior" = 1; # enable corner click for right click
   # NOTE: If right click with 2-finger tap also clicks to targetting item, we can use 1-finger Ctrl-tap to get the menu.

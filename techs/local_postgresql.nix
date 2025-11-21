@@ -19,20 +19,18 @@
   system.activationScripts.preActivation = {
     enable = true;
     # (note: the DB runs as my user! `staff` is the default non-admin group)
-    text = ''
-      if [ ! -d "${config.services.postgresql.dataDir}" ]; then
+    text = let dataDir = config.services.postgresql.dataDir; in ''
+      if [ ! -d "${dataDir}" ]; then
         echo "creating PostgreSQL data directory..."
-        sudo mkdir -m 750 -p ${config.services.postgresql.dataDir}
-        chown -R ${config.system.primaryUser}:staff ${config.services.postgresql.dataDir}
+        sudo mkdir -m 750 -p "${dataDir}"
+        chown -R ${config.system.primaryUser}:staff "${dataDir}"
       fi
     '';
   };
 
   services.postgresql.initdbArgs = [
+    # We should really change the (internal) `superUser` option instead 🤔
     "-U ${config.system.primaryUser}"
-    "--auth=trust"
-    "--no-locale"
-    "--encoding=UTF8"
   ];
 
   launchd.user.agents.postgresql.serviceConfig = {

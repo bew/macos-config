@@ -21,12 +21,12 @@ in {
   environment.systemPackages = [
     (pkgs.callPackage ./pkgs/hammerspoon.nix {})
 
-    # nice clipboard manager
+    # nice clipboard manager (open with `Cmd+Shift+c` by default)
     (stable.maccy.overrideAttrs (prev: rec {
-      version = "v2.5.1";
+      version = "2.6.0";
       src = pkgs.fetchurl {
         url = "https://github.com/p0deje/Maccy/releases/download/${version}/Maccy.app.zip";
-        hash = "sha256-pwMiCAS+1uEtEQv2e1UflxYuuh/qqYJbMcp2ZVvZBTA=";
+        hash = "sha256-cLmRmbS0EJf1UPflrj2AyfsuVfB0xShEcb6uJcRnwcs=";
       };
     }))
   ];

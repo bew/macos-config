@@ -32,6 +32,10 @@
 
       # Necessary for using flakes on this system.
       nix.settings.experimental-features = "nix-command flakes";
+      # Avoid issue "download buffer is full; consider increasing the 'download-buffer-size' setting"
+      # REF: https://github.com/NixOS/nix/issues/11728#issuecomment-2725297584
+      # .. might be fixed in next (@2025-12) Nix release
+      nix.settings.download-buffer-size = 512 * 1000 * 1000; # 512M
 
       # Used for all options that applies to the primary user (many in `system.defaults.*`)
       system.primaryUser = "benoitlesellierdechezelles";

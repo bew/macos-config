@@ -7,24 +7,30 @@ in {
   programs.zsh.enable = true;
 
   environment.systemPackages = [
-    # Minimal usable CLI environment 😬
+    # Basic usable CLI environment 😬
     stable.neovim
     stable.eza
     stable.fd
     stable.just
     stable.bat
-    stable.git
-    stable.gitAndTools.delta
-    bleedingedge.mergiraf
-    stable.git-trim
-    stable.lazygit
-    stable.gh
+
     stable.ripgrep
     stable.tealdeer # nice tldr impl
     stable.yazi
     stable.htop
     stable.tokei
+    stable.bacon # background code checker
     bleedingedge.nushell
+
+    # Git stuff
+    stable.git
+    stable.delta
+    stable.mergiraf
+    stable.git-trim
+    stable.lazygit
+    stable.gh
+
+    bleedingedge.opencode # AI client on-demand
 
     stable.nix-tree
     stable.nix-output-monitor

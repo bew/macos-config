@@ -589,11 +589,7 @@
                                     "key_code": "g",
                                     "modifiers": { "mandatory": ["option"] }
                                 },
-                                "to_if_alone": [
-                                    {
-                                        "key_code": "home"
-                                    }
-                                ],
+                                "to_if_alone": [{ "key_code": "home" }],
                                 "type": "basic"
                             },
                             {
@@ -610,11 +606,7 @@
                                     "key_code": "g",
                                     "modifiers": { "mandatory": ["option", "shift"] }
                                 },
-                                "to_if_alone": [
-                                    {
-                                        "key_code": "end"
-                                    }
-                                ],
+                                "to_if_alone": [{ "key_code": "end" }],
                                 "type": "basic"
                             }
                         ]

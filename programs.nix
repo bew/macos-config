@@ -30,6 +30,7 @@ in {
     stable.lazygit
     stable.gh
 
+    stable.ncdu
     bleedingedge.opencode # AI client on-demand
 
     stable.nix-tree
@@ -49,6 +50,7 @@ in {
   imports = [
     ./techs/aws.nix
     ./techs/docker-client.nix
+    ./techs/javascript-frontend.nix
     ./techs/local_postgresql.nix
     ./techs/pythons.nix
     ./techs/terraform.nix

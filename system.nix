@@ -26,6 +26,8 @@
 
   system.defaults.WindowManager.StandardHideDesktopIcons = true;
   system.defaults.WindowManager.EnableStandardClickToShowDesktop = false;
+  # NEVER let MacOS auto-re-arrange spaces based on recent apps used ><
+  system.defaults.dock.mru-spaces = false;
 
   # Apps settings
 

@@ -1,9 +1,11 @@
-{pkgs, ...}:
+{pkgs, pkgsChannels, ...}:
 
-{
-  environment.systemPackages = with pkgs; [
+let
+  inherit (pkgsChannels) bleedingedge;
+in {
+  environment.systemPackages = [
     # API client for interactive manual testing
-    bruno
-    bruno-cli
+    bleedingedge.bruno
+    bleedingedge.bruno-cli
   ];
 }

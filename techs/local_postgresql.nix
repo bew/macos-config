@@ -3,7 +3,7 @@
 {
   services.postgresql = {
     enable = true;
-    package = pkgs.postgresql_16;
+    package = pkgs.postgresql_18;
     settings.listen_addresses = "localhost";
 
     # Not actually impl on the module @2025-11..

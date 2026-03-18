@@ -14,6 +14,8 @@ in {
     stable.just
     stable.bat
 
+    stable.unixtools.watch # the `watch` cmd (missing on macOS..)
+
     stable.ripgrep
     stable.tealdeer # nice tldr impl
     stable.yazi
@@ -21,6 +23,8 @@ in {
     stable.tokei
     stable.bacon # background code checker
     bleedingedge.nushell
+
+    stable.bats # Bash Automated Testing System (useful when making scripts!)
 
     # Git stuff
     stable.git

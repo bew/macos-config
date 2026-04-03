@@ -1,4 +1,4 @@
-{ pkgs, lib, pkgsChannels, mybuilders, ... }:
+{ pkgs, lib, pkgsets, mybuilders, ... }:
 
 let
   pyVersion = (
@@ -31,7 +31,7 @@ let
 in
 let
 
-  inherit (pkgsChannels) stable bleedingedge;
+  inherit (pkgsets) stable bleedingedge;
 
   pyVersionDrvs = {
     "3.11" = pyVersion {

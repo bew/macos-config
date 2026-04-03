@@ -34,7 +34,7 @@ stdenvNoCC.mkDerivation (finalAttrs: {
     runHook postInstall
   '';
 
-  meta = with lib; {
+  meta = {
     description = "Tool for powerful automation of macOS";
     longDescription = ''
       Hammerspoon is just a bridge between the operating system and a Lua scripting engine.
@@ -42,9 +42,9 @@ stdenvNoCC.mkDerivation (finalAttrs: {
     '';
     homepage = "http://www.hammerspoon.org";
     changelog = "http://www.hammerspoon.org/releasenotes/${finalAttrs.version}.html";
-    license = with licenses; [ mit ];
-    sourceProvenance = with sourceTypes; [ binaryNativeCode ];
-    maintainers = with maintainers; [ bew ];
-    platforms = [ "aarch64-darwin" "x86_64-darwin" ];
+    license = with lib.licenses; [ mit ];
+    sourceProvenance = with lib.sourceTypes; [ binaryNativeCode ];
+    maintainers = with lib.maintainers; [ bew ];
+    platforms = lib.platforms.darwin;
   };
 })

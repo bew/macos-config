@@ -1,7 +1,7 @@
-{ pkgs, pkgsChannels, config, ... }:
+{ pkgs, pkgsets, config, ... }:
 
 let
-  inherit (pkgsChannels) stable bleedingedge;
+  inherit (pkgsets) stable bleedingedge;
 in {
   imports = [
     ./modules/hammerspoon.nix

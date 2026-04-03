@@ -1,7 +1,7 @@
-{pkgs, pkgsChannels, ...}:
+{pkgs, pkgsets, ...}:
 
 let
-  inherit (pkgsChannels) bleedingedge;
+  inherit (pkgsets) bleedingedge;
 in {
   environment.systemPackages = [
     # API client for interactive manual testing

@@ -1,7 +1,7 @@
-{ pkgsChannels, ... }:
+{ pkgsets, ... }:
 
 let
-  inherit (pkgsChannels) stable bleedingedge;
+  inherit (pkgsets) stable bleedingedge;
 in {
   # Create /etc/zshrc that loads the nix-darwin environment.
   programs.zsh.enable = true;

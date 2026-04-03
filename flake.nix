@@ -23,7 +23,7 @@
         ./programs.nix
       ];
 
-      _module.args.pkgsChannels = {
+      _module.args.pkgsets = {
         stable = nixpkgs.legacyPackages.${system};
         bleedingedge = nixpkgsBleedingEdge.legacyPackages.${system};
       };

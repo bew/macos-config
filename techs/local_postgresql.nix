@@ -6,8 +6,13 @@
     package = pkgs.postgresql_18;
     settings.listen_addresses = "localhost";
 
-    # Not actually impl on the module @2025-11..
-    # ensureDatabases = [ "myprojects" ];
+    # Accept any connection from localhost unconditionally (FOR DEV ONLY!)
+    authentication = ''
+      # TYPE  DATABASE  USER  ADDRESS        METHOD
+      local   all       all                  trust
+      host    all       all   127.0.0.1/32   trust
+      host    all       all   ::1/128        trust
+    '';
   };
 
   # ------------------------------------------------------------------------

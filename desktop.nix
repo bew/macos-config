@@ -19,6 +19,8 @@ in {
   };
 
   environment.systemPackages = [
+    (pkgs.callPackage ./pkgs/middledrag.nix {})
+
     # nice clipboard manager (open with `Cmd+Shift+c` by default)
     (stable.maccy.overrideAttrs (prev: rec {
       version = "2.6.0";

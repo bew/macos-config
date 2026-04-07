@@ -56,5 +56,9 @@ in {
 
   config = lib.mkIf cfg.enable {
     system.defaults.CustomUserPreferences."org.hammerspoon.Hammerspoon" = cfg_defaults;
+
+    environment.systemPackages = [
+      cfg.package
+    ];
   };
 }

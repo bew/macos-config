@@ -30,6 +30,8 @@
 
       _module.args.mybuilders = import ./lib/mybuilders.nix { inherit pkgs lib; };
 
+      nixpkgs.config.allowUnfree = true;
+
       # Necessary for using flakes on this system.
       nix.settings.experimental-features = "nix-command flakes";
       # Avoid issue "download buffer is full; consider increasing the 'download-buffer-size' setting"

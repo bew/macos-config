@@ -39,6 +39,24 @@
       # .. might be fixed in next (@2025-12) Nix release
       nix.settings.download-buffer-size = 512 * 1000 * 1000; # 512M
 
+      # Nix global/system flake registr
+      nixpkgs.flake.setFlakeRegistry = false; # Don't set 'nixpkgs' in system flake registry
+      nixpkgs.flake.setNixPath = false; # necessary for setFlakeRegistry=false
+      nix.settings.flake-registry = ""; # No global registry
+      nix.registry = {
+        pkgs.flake = nixpkgs;
+        unstable.to = {
+          type = "github";
+          owner = "nixos";
+          repo = "nixpkgs";
+          ref = "nixpkgs-unstable";
+        };
+        dots.to = {
+          type = "path";
+          path = "${config.system.primaryUserHome}/.dot";
+        };
+      };
+
       # Used for all options that applies to the primary user (many in `system.defaults.*`)
       system.primaryUser = "benoitlesellierdechezelles";
       environment.variables.XDG_CONFIG_HOME = "${config.system.primaryUserHome}/.config";

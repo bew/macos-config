@@ -34,10 +34,6 @@ let
   inherit (pkgsets) stable bleedingedge;
 
   pyVersionDrvs = {
-    "3.11" = pyVersion {
-      pyDrv = stable.python311;
-      binNameSuffix = "3.11";
-    };
     "3.12" = pyVersion {
       pyDrv = stable.python312;
       binNameSuffix = "3.12";
@@ -54,7 +50,6 @@ let
 
 in {
   environment.systemPackages = [
-    pyVersionDrvs."3.11"
     pyVersionDrvs."3.12"
     pyVersionDrvs."3.13"
     pyVersionDrvs."3.14"

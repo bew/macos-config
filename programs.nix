@@ -42,6 +42,7 @@ in {
   ];
 
   imports = [
+    ./techs/atlassian.nix
     ./techs/aws.nix
     ./techs/docker-client.nix
     ./techs/javascript-frontend.nix

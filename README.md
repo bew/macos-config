@@ -19,6 +19,11 @@ Using nix-darwin for most system config
     (At least 3-fingers `Tap` works well!)
   * 👉 Enable `Launch at login`
 
+  > [!WARNING]
+  > Until https://github.com/NullPointerDepressiveDisorder/MiddleDrag/pull/131 is released,
+  > MiddleDrag can craft on wake-from-sleep 😬
+  > (and we can't build from source with patch because it uses private touchpad libs)
+
 ### Programs to install manually
 
 - Karabiner-elements (https://karabiner-elements.pqrs.org/), because the service module is currently [broken :/](https://github.com/LnL7/nix-darwin/issues/1132).

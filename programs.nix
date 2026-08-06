@@ -13,6 +13,7 @@ in {
     stable.fd
     stable.just
     stable.bat
+    stable.sd
 
     stable.unixtools.watch # the `watch` cmd (missing on macOS..)
 

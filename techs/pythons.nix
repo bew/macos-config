@@ -38,10 +38,6 @@ let
       pyDrv = stable.python312;
       binNameSuffix = "3.12";
     };
-    "3.13" = pyVersion {
-      pyDrv = bleedingedge.python313;
-      binNameSuffix = "3.13";
-    };
     "3.14" = pyVersion {
       pyDrv = bleedingedge.python314;
       binNameSuffix = "3.14";
@@ -51,7 +47,6 @@ let
 in {
   environment.systemPackages = [
     pyVersionDrvs."3.12"
-    pyVersionDrvs."3.13"
     pyVersionDrvs."3.14"
     (pyDefault pyVersionDrvs."3.12")
   ];

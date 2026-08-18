@@ -13,6 +13,7 @@ in {
     stable.fd
     stable.just
     stable.bat
+    stable.tree
     stable.sd
 
     stable.unixtools.watch # the `watch` cmd (missing on macOS..)
@@ -38,6 +39,7 @@ in {
     stable.ncdu
     bleedingedge.opencode # AI client on-demand
 
+    stable.nixfmt
     stable.nix-tree
     stable.nix-output-monitor
   ];

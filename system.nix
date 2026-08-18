@@ -24,6 +24,18 @@
   system.defaults.NSGlobalDomain."com.apple.trackpad.trackpadCornerClickBehavior" = 1; # enable corner click for right click
   # NOTE: If right click with 2-finger tap also clicks to targetting item, we can use 1-finger Ctrl-tap to get the menu.
 
+  # WARN: even though this is set (and even when not set), the natural scroll direction resets to
+  # DISABLED when applying the config, and I have to manually open Trackpad setting (where it's
+  # still shown as enabled..) to toogle it twice (OFF then ON) again to have it applied
+  # everywhere..
+  system.defaults.NSGlobalDomain."com.apple.swipescrolldirection" = true; # Natural Scroll!
+  # After activation, auto-open Trackpad settings to force enable natural scrolling. 😬
+  # note: We add to the existing `postActivation` fragment, that runs after everything
+  system.activationScripts.postActivation.text = ''
+    echo "Opening Trackpad settings to manually force enable natural scrolling.."
+    open "x-apple.systempreferences:com.apple.Trackpad-Settings.extension"
+  '';
+
   system.defaults.WindowManager.StandardHideDesktopIcons = true;
   system.defaults.WindowManager.EnableStandardClickToShowDesktop = false;
   # NEVER let MacOS auto-re-arrange spaces based on recent apps used ><

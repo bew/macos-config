@@ -21,17 +21,16 @@
   # SEE: https://github.com/nix-darwin/nix-darwin/issues/339
 
   # note: We add to the existing `preActivation` fragment, that runs before everything
-  system.activationScripts.preActivation = {
-    enable = true;
-    # (note: the DB runs as my user! `staff` is the default non-admin group)
-    text = let dataDir = config.services.postgresql.dataDir; in ''
-      if [ ! -d "${dataDir}" ]; then
-        echo "creating PostgreSQL data directory..."
-        sudo mkdir -m 750 -p "${dataDir}"
-        chown -R ${config.system.primaryUser}:staff "${dataDir}"
-      fi
-    '';
-  };
+  # (note: the DB runs as my user! `staff` is the default non-admin group)
+  system.activationScripts.preActivation.text = let
+    dataDir = config.services.postgresql.dataDir;
+  in ''
+    if [ ! -d "${dataDir}" ]; then
+      echo "creating PostgreSQL data directory..."
+      sudo mkdir -m 750 -p "${dataDir}"
+      chown -R ${config.system.primaryUser}:staff "${dataDir}"
+    fi
+  '';
 
   services.postgresql.initdbArgs = [
     # We should really change the (internal) `superUser` option instead 🤔

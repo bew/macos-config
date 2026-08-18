@@ -14,7 +14,7 @@
 
   outputs = inputs@{ self, nix-darwin, nixpkgs, nixpkgsBleedingEdge, ... }:
   let
-    configuration = { pkgs, lib, config, ... }: let system = "aarch64-darwin"; in {
+    configuration = { pkgs, lib, config, pkgsets, ... }: let system = "aarch64-darwin"; in {
       imports = [
         #inputs.home-manager.darwinModules.default
         ./system.nix
@@ -68,6 +68,11 @@
       # Used for backwards compatibility, please read the changelog before changing.
       # $ darwin-rebuild changelog
       system.stateVersion = 5;
+
+      # Used to show closure diff on rebuild
+      environment.systemPackages = [
+        pkgsets.bleedingedge.dix # a wip (@2026-08) Rust-rewrite of nvd
+      ];
 
       # The platform the configuration will be used on.
       nixpkgs.hostPlatform = system;

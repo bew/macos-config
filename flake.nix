@@ -79,6 +79,7 @@
         # <https://nixmultiverse.com/docs/cli>
         multiverse.packages.${system}.mvs
       ];
+      _module.args.mv = multiverse.multiverse.${system};
 
       # The platform the configuration will be used on.
       nixpkgs.hostPlatform = system;

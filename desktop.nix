@@ -1,7 +1,7 @@
 { pkgs, pkgsets, config, ... }:
 
 let
-  inherit (pkgsets) stable;
+  inherit (pkgsets) stable bleedingedge;
 in {
   imports = [
     ./modules/hammerspoon.nix
@@ -29,6 +29,8 @@ in {
         hash = "sha256-cLmRmbS0EJf1UPflrj2AyfsuVfB0xShEcb6uJcRnwcs=";
       };
     }))
+
+    bleedingedge.handy # OSS local SpeechToText tool <https://handy.computer>
   ];
 
   programs.hammerspoon.enable = true;

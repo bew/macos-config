@@ -7,12 +7,14 @@
     nix-darwin.url = "github:nix-darwin/nix-darwin/nix-darwin-26.05";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
 
+    multiverse.url = "github:fzakaria/nixpkgs-multiverse";
+
     #home-manager.url = "github:nix-community/home-manager";
 
     # dots.url = "github:bew/dotfiles";
   };
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs, nixpkgsBleedingEdge, ... }:
+  outputs = inputs@{ self, nix-darwin, nixpkgs, nixpkgsBleedingEdge, multiverse, ... }:
   let
     configuration = { pkgs, lib, config, pkgsets, ... }: let system = "aarch64-darwin"; in {
       imports = [
@@ -69,9 +71,13 @@
       # $ darwin-rebuild changelog
       system.stateVersion = 5;
 
-      # Used to show closure diff on rebuild
       environment.systemPackages = [
+        # Used to show closure diff on rebuild
         pkgsets.bleedingedge.dix # a wip (@2026-08) Rust-rewrite of nvd
+
+        # 🤯 Tool to access ~all version of ~all packages from any rev of nixpkgs 🤯
+        # <https://nixmultiverse.com/docs/cli>
+        multiverse.packages.${system}.mvs
       ];
 
       # The platform the configuration will be used on.

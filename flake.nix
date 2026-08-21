@@ -23,6 +23,7 @@
         ./remaps.nix
         ./desktop.nix
         ./programs.nix
+        ./linux-builder.nix
       ];
 
       _module.args.pkgsets = {

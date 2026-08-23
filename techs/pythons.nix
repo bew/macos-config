@@ -1,4 +1,4 @@
-{ pkgs, lib, pkgsets, mybuilders, mv, ... }:
+{ pkgs, lib, pkgsets, mybuilders, ... }:
 
 let
   pyVersion = (
@@ -29,37 +29,16 @@ let
     ];
   };
 
-  getLatestForMinor = pyVersions: targetVersion:
-    let
-      matchingPyVersions = builtins.filter
-        (v: lib.versions.majorMinor v == targetVersion)
-        pyVersions;
-    in lib.last matchingPyVersions;
-
 in
 let
 
   inherit (pkgsets) stable bleedingedge;
 
-  multiverse_pyVersionDrvs = let
-    # Use nixpkgs-multiverse 🚀
-    pyDrvFor = targetVersion: let
-      latestVersionForTarget = getLatestForMinor (mv.versionsOf "python3") targetVersion;
-    in mv.versions.python3.${latestVersionForTarget};
-    # WARNING: Cannot use `mv.fast.versions` (no fast index for aarch64-darwin ><)
-    # ISSUE: https://github.com/fzakaria/nixpkgs-multiverse/issues/15
-  in {
-    "3.12" = pyVersion {
-      pyDrv = pyDrvFor "3.12";
-      binNameSuffix = "3.12";
-    };
-    "3.14" = pyVersion {
-      pyDrv = pyDrvFor "3.14";
-      binNameSuffix = "3.14";
-    };
-  };
-
-  manual_pyVersionDrvs = {
+  # NOTE: We _cannot_ use nixpkgs-multiverse here to get the python versions,
+  #   because we install both python & ipython (from `python.withPackages (...)`),
+  #   nixpkgs-multiverse does NOT expose `passthru` Nix hunks, and we need that to get the correct
+  #   ipython & its dependencies..
+  pyVersionDrvs = {
     "3.12" = pyVersion {
       pyDrv = stable.python312;
       binNameSuffix = "3.12";
@@ -69,12 +48,6 @@ let
       binNameSuffix = "3.14";
     };
   };
-
-  # Cannot use `mv.fast.versions` (no fast index for aarch64-darwin ><)
-  # WARNING: Because of I cannot use `mv.fast.versions` (see above), using multiverse for getting
-  # 2 python versions add ~3s to the rebuild of my macos-config.. 😬😬😬
-  # pyVersionDrvs = multiverse_pyVersionDrvs;
-  pyVersionDrvs = manual_pyVersionDrvs;
 
 in {
   environment.systemPackages = [

@@ -47,6 +47,7 @@ in {
   imports = [
     ./techs/atlassian.nix
     ./techs/aws.nix
+    ./techs/benchmarks.nix
     ./techs/docker-client.nix
     ./techs/javascript-frontend.nix
     ./techs/local_postgresql.nix

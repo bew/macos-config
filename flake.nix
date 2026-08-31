@@ -35,6 +35,8 @@
 
       nixpkgs.config.allowUnfree = true;
 
+      nix.package = pkgsets.bleedingedge.nixVersions.latest;
+
       # Necessary for using flakes on this system.
       nix.settings.experimental-features = "nix-command flakes";
       # Avoid issue "download buffer is full; consider increasing the 'download-buffer-size' setting"

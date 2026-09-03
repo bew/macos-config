@@ -1,20 +1,5 @@
 {
   "nodes": {
-    "multiverse": {
-      "locked": {
-        "lastModified": 1787498586,
-        "narHash": "sha256-fbjmsVErYtk/Eos9K64wR5i3zB4wG0J9n5BpcwMBJKk=",
-        "owner": "fzakaria",
-        "repo": "nixpkgs-multiverse",
-        "rev": "3a78aabd6d442ae61592b295a3e8914b108a88d0",
-        "type": "github"
-      },
-      "original": {
-        "owner": "fzakaria",
-        "repo": "nixpkgs-multiverse",
-        "type": "github"
-      }
-    },
     "nix-darwin": {
       "inputs": {
         "nixpkgs": [
@@ -70,7 +55,6 @@
     },
     "root": {
       "inputs": {
-        "multiverse": "multiverse",
         "nix-darwin": "nix-darwin",
         "nixpkgs": "nixpkgs",
         "nixpkgsBleedingEdge": "nixpkgsBleedingEdge"

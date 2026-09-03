@@ -28,31 +28,19 @@ in {
 
     stable.bats # Bash Automated Testing System (useful when making scripts!)
 
-    # Git stuff
-    stable.git
-    stable.delta
-    stable.mergiraf
-    stable.git-trim
-    stable.lazygit
-    stable.gh
-
     stable.ncdu
     bleedingedge.opencode # AI client on-demand
-
-    stable.nixfmt
-    stable.nix-tree
-    stable.nix-output-monitor
   ];
 
   imports = [
     ./techs/atlassian.nix
-    ./techs/aws.nix
+    # ./techs/aws.nix
     ./techs/benchmarks.nix
     ./techs/docker-client.nix
     ./techs/javascript-frontend.nix
     ./techs/local_postgresql.nix
-    ./techs/pythons.nix
-    ./techs/terraform.nix
+    # ./techs/pythons.nix
+    # ./techs/terraform.nix
     ./techs/web-api.nix
   ];
 }

@@ -7,14 +7,12 @@
     nix-darwin.url = "github:nix-darwin/nix-darwin/nix-darwin-26.05";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
 
-    multiverse.url = "github:fzakaria/nixpkgs-multiverse";
-
     #home-manager.url = "github:nix-community/home-manager";
 
     # dots.url = "github:bew/dotfiles";
   };
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs, nixpkgsBleedingEdge, multiverse, ... }:
+  outputs = inputs@{ self, nix-darwin, nixpkgs, nixpkgsBleedingEdge, ... }:
   let
     configuration = { pkgs, lib, config, pkgsets, ... }: let system = "aarch64-darwin"; in {
       imports = [
@@ -80,9 +78,7 @@
 
         # 🤯 Tool to access ~all version of ~all packages from any rev of nixpkgs 🤯
         # <https://nixmultiverse.com/docs/cli>
-        multiverse.packages.${system}.mvs
       ];
-      _module.args.mv = multiverse.multiverse.${system};
 
       # The platform the configuration will be used on.
       nixpkgs.hostPlatform = system;

@@ -18,18 +18,14 @@ in {
 
     stable.unixtools.watch # the `watch` cmd (missing on macOS..)
 
-    stable.ripgrep
     stable.tealdeer # nice tldr impl
     stable.yazi
     stable.htop
-    stable.tokei
-    stable.bacon # background code checker
-    bleedingedge.nushell
-
-    stable.bats # Bash Automated Testing System (useful when making scripts!)
 
     stable.ncdu
-    bleedingedge.opencode # AI client on-demand
+
+    # bleedingedge.opencode # AI client on-demand
+    # (→ I add it in my home setup!)
   ];
 
   imports = [

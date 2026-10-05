@@ -41,6 +41,5 @@ in {
     ./techs/local_postgresql.nix
     # ./techs/pythons.nix
     # ./techs/terraform.nix
-    ./techs/web-api.nix
   ];
 }

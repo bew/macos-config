@@ -18,13 +18,14 @@ in
     ephemeral = true; # Delete the builder’s disk image on every restart
     maxJobs = 4;
     config = {
-      virtualisation = {
-        darwin-builder = {
-          diskSize = 20 * 1024;
-          memorySize = 4 * 1024;
-        };
-        cores = 4;
+      virtualisation.darwin-builder = {
+        # ⚠️ Changes to these values do NOT take effect on nix-darwin activation
+        # - If `ephemeral=false`, delete the VM disk first: `sudo rm /var/lib/linux-builder/nixos.qcow2`
+        # - Restart the VM: `sudo launchctl kickstart -k system/org.nixos.linux-builder`
+        diskSize = 30 * 1024; # in GB
+        memorySize = 4 * 1024; # in GB
       };
+      virtualisation.cores = 4;
     };
   };
 

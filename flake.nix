@@ -7,8 +7,6 @@
     nix-darwin.url = "github:nix-darwin/nix-darwin/nix-darwin-26.05";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
 
-    #home-manager.url = "github:nix-community/home-manager";
-
     # dots.url = "github:bew/dotfiles";
   };
 
@@ -21,7 +19,9 @@
         ./remaps.nix
         ./desktop.nix
         ./programs.nix
-        ./linux-builder.nix
+        # Working for small pkg, but failed at the time for building OS images
+        # (should be fixed now but I don't have usecase anymore)
+        # ./linux-builder.nix
       ];
 
       _module.args.pkgsets = {
@@ -37,10 +37,6 @@
 
       # Necessary for using flakes on this system.
       nix.settings.experimental-features = "nix-command flakes";
-      # Avoid issue "download buffer is full; consider increasing the 'download-buffer-size' setting"
-      # REF: https://github.com/NixOS/nix/issues/11728#issuecomment-2725297584
-      # .. might be fixed in next (@2025-12) Nix release
-      nix.settings.download-buffer-size = 512 * 1000 * 1000; # 512M
 
       # Nix global/system flake registr
       nixpkgs.flake.setFlakeRegistry = false; # Don't set 'nixpkgs' in system flake registry
@@ -74,10 +70,8 @@
 
       environment.systemPackages = [
         # Used to show closure diff on rebuild
-        pkgsets.bleedingedge.dix # a wip (@2026-08) Rust-rewrite of nvd
-
-        # 🤯 Tool to access ~all version of ~all packages from any rev of nixpkgs 🤯
-        # <https://nixmultiverse.com/docs/cli>
+        # TODO: move dix to a devshell!
+        pkgsets.bleedingedge.dix
       ];
 
       # The platform the configuration will be used on.
@@ -86,8 +80,8 @@
   in
   {
     # Build darwin flake using:
-    # $ darwin-rebuild build --flake .#FRPARALT0054
-    darwinConfigurations."FRPARALT0054" = nix-darwin.lib.darwinSystem {
+    # $ darwin-rebuild build --flake .#work-mac
+    darwinConfigurations.work-mac = nix-darwin.lib.darwinSystem {
       modules = [ configuration ];
     };
   };

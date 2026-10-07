@@ -645,6 +645,23 @@
                                 "type": "basic"
                             }
                         ]
+                    },
+                    {
+                        "description": "[Tool] Remap `F10` to `Cmd-Opt-Shift-F10` (for transcription tool)",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "f10"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "f10",
+                                        "modifiers": ["right_command", "right_option", "right_shift"]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
                     }
                 ]
             },
